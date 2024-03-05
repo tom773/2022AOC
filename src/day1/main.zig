@@ -1,5 +1,6 @@
 const std = @import("std");
 
+// This Solves Part 2. Part 1 had a similar solution, but it was the sum of the largest number. 
 pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     const allocator = gpa.allocator();
@@ -7,7 +8,7 @@ pub fn main() !void {
     const bytes = try allocator.alloc(u8, 16384);
     defer allocator.free(bytes);
 
-    var file = try std.fs.cwd().openFile("src/1.txt", .{});
+    var file = try std.fs.cwd().openFile("src/day1/1.txt", .{});
     defer file.close();
 
     var buffer: [1024]u8 = undefined;
