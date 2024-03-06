@@ -147,30 +147,35 @@ pub fn main() !void {
         const eMove = try getEMoveP2(line[0]);
         const desResult_ = try desResult(line[2]);
 
-        if (desResult_ == Result.win){
-            if (eMove == Move.rock) {
-                total_ += 6+2;
-            } else if (eMove == Move.paper) {
-                total_ += 6+3;
-            } else {
-                total_ += 6+1;
-            }
-        } else if (desResult_ == Result.lose){
-            if (eMove == Move.rock) {
-                total_ += 0+3;
-            } else if (eMove == Move.paper) {
-                total_ += 0+1;
-            } else {
-                total_ += 0+2;
-            } 
-        } else {
-            if (eMove == Move.rock) {
-                total_ += 3+1;
-            } else if (eMove == Move.paper) {
-                total_ += 3+2;
-            } else {
-                total_ += 3+3;
-            }
+        
+        switch (desResult_) {
+            Result.win => {
+                if (eMove == Move.rock) {
+                    total_ += 6 + 2;
+                } else if (eMove == Move.paper) {
+                    total_ += 6 + 3;
+                } else {
+                    total_ += 6 + 1;
+                }
+            },
+            Result.lose => {
+                if (eMove == Move.rock) {
+                    total_ += 0 + 3;
+                } else if (eMove == Move.paper) {
+                    total_ += 0 + 1;
+                } else {
+                    total_ += 0 + 2;
+                }
+            },
+            else => {
+                if (eMove == Move.rock) {
+                    total_ += 3 + 1;
+                } else if (eMove == Move.paper) {
+                    total_ += 3 + 2;
+                } else {
+                    total_ += 3 + 3;
+                }
+            },
         }
     }
     std.debug.print("{d}\n", .{total_});
